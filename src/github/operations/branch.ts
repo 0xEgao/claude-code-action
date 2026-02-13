@@ -166,7 +166,7 @@ export async function setupBranch(
 
       // Execute git commands to checkout PR branch (dynamic depth based on PR size)
       // Using execFileSync instead of shell template literals for security
-      execGit(["fetch", "origin", `--depth=${fetchDepth}`, branchName]);
+      execGit(["fetch", "origin", `--depth=${fetchDepth}`,  `+refs/pull/${entityNumber}/head:${branchName}`]);
       execGit(["checkout", branchName, "--"]);
 
       console.log(`Successfully checked out PR branch for PR #${entityNumber}`);
